@@ -125,39 +125,39 @@ import gql from 'graphql-tag'
 
 export const ADD_ORGANIZATION = gql`
     mutation createOrganization(
-        $name: String!, 
-        $description: String!,
-        $email: String,
-        $site: String,
-        $address: String) {
-        createOrganization(input: {
-            organization: { 
-                ownerId:1, 
-                name: $name, 
-                description: $description,
-                email: $email,
-                site: $site,
-                address: $address,
-                active: true
-            }
-        }) {
-            organization {
-                id
-            }
+      $name: String!, 
+      $description: String!,
+      $email: String,
+      $site: String,
+      $address: String) {
+      createOrganization(input: {
+        organization: { 
+          ownerId:1, 
+          name: $name, 
+          description: $description,
+          email: $email,
+          site: $site,
+          address: $address,
+          active: true
         }
+      }) {
+          organization {
+            id
+          }
+      }
     }
 `
 export const LIST_ORGANIZATION = gql`{
 	allOrganizations(condition: {active: true}) {
 	  edges {
 	    node {
-            id
-            name
-            description
-            email
-            site
-            address
-            active
+        id
+        name
+        description
+        email
+        site
+        address
+        active
 	    }
 	  }
 	}
@@ -179,17 +179,16 @@ So, if you need a button in your component:
 import Button from 'material-ui/Button'
 
 class MyComponent extends Component {
-    
-    render() {
-        return (
-            <Button 
-                className='button' raised dense 
-                onClick={}>
-                <Save className='leftIcon' />
-                Save
-            </Button>
-        )
-    }
+  render() {
+    return (
+      <Button 
+        className='button' raised dense 
+        onClick={}>
+        <Save className='leftIcon' />
+        Save
+      </Button>
+    )
+  }
 }
 
 export default MyComponent
@@ -230,57 +229,57 @@ import { ADD_ORGANIZATION } from '../graphql'
 
 class CustomerNew extends Component {
 
-    handleChange = name => event => {
-        this.setState({
-            [name]: event.target.value
-        })
-    }
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
+    })
+  }
 
-    createCustomer () {
-        const { name, description } = this.state
-        await this.props.createCustomerMutation({
-          variables: {
-            name,
-            description
-          }
-        })
-    }
-    
-    render() {
-        return (
-            <ApolloProvider client={client}>
-                <div className='main'>
-                    <TextField
-                        id="name"
-                        label="Company name"
-                        className='textField'
-                        margin="normal"
-                        autoFocus={true}
-                        onChange={this.handleChange('name')}
-                        />
-                    <TextField
-                        id="multiline-flexible"
-                        label="Description"
-                        multiline
-                        rowsMax="4"
-                        className='textField'
-                        margin="normal"
-                        onChange={this.handleChange('description')}
-                        />
-                    <Button 
-                        className='button' raised dense 
-                        onClick={() => this.createCustomer()}>
-                        <Save className='leftIcon' />
-                        Save
-                    </Button>
-                </div>
-            </ApolloProvider>
-        )
-    }
+  createCustomer () {
+    const { name, description } = this.state
+    await this.props.createCustomerMutation({
+      variables: {
+        name,
+        description
+      }
+    })
+  }
+  
+  render() {
+    return (
+      <ApolloProvider client={client}>
+        <div className='main'>
+          <TextField
+            id="name"
+            label="Company name"
+            className='textField'
+            margin="normal"
+            autoFocus={true}
+            onChange={this.handleChange('name')}
+            />
+          <TextField
+            id="multiline-flexible"
+            label="Description"
+            multiline
+            rowsMax="4"
+            className='textField'
+            margin="normal"
+            onChange={this.handleChange('description')}
+            />
+          <Button 
+            className='button' raised dense 
+            onClick={() => this.createCustomer()}>
+            <Save className='leftIcon' />
+            Save
+          </Button>
+        </div>
+      </ApolloProvider>
+    )
+  }
 }
 
 export default graphql(ADD_ORGANIZATION, {
-    name: 'createCustomerMutation'
+  name: 'createCustomerMutation'
 })(CustomerEdit)
 ```
 
@@ -303,20 +302,20 @@ Create a file called `graphql.js` on the top level of customer dir.
 import gql from 'graphql-tag'
 
 export const ADD_ORGANIZATION = gql`
-    mutation(
-        $name: String!, 
-        $description: String!) {
-        createOrganization(input: {
-            organization: { 
-                name: $name, 
-                description: $description
-            }
-        }) {
-            organization {
-                id
-            }
-        }
+  mutation(
+    $name: String!, 
+    $description: String!) {
+    createOrganization(input: {
+      organization: { 
+        name: $name, 
+        description: $description
+      }
+    }) {
+      organization {
+        id
+      }
     }
+  }
 `
 ```
 Note that this mutation is based on the GraphQL API we have. You probably will have something different, but the cool thing is you can just copy the mutation and paste here.  
@@ -345,69 +344,73 @@ import { UPDATE_ORGANIZATION } from '../graphql'
 
 class CustomerEdit extends Component {
 
-    handleChange = name => event => {
-        this.setState({
-            [name]: event.target.value
-        })
-    }
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
+    })
+  }
 
-    updateCustomer = async (id) => {
-        const { name, description } = this.state
-        await this.props.updateCustomerMutation({
-          variables: {
-            id,
-            name,
-            description
-          }
-        })
-    }
-    
-    render() {
-        const org = this.props.location.state.organization
-        // TODO: If there's no state we should get the organization data from GraphQL
-        // This is the scenario where a user is trying to access the URL directly
-        return (
-            <ApolloProvider client={client}>
-                <div className='main'>
-                    <TextField
-                        id="name"
-                        label="Company name"
-                        className='textField'
-                        defaultValue={org.name}
-                        margin="normal"
-                        autoFocus={true}
-                        onChange={this.handleChange('name')}
-                        />
-                    <br />
-                    <TextField
-                        id="multiline-flexible"
-                        label="Description"
-                        defaultValue={org.description}
-                        multiline
-                        rowsMax="4"
-                        className='textField'
-                        margin="normal"
-                        onChange={this.handleChange('description')}
-                    />
-                    <Button 
-                        className='button' raised dense 
-                        onClick={() => this.updateCustomer(org.id)}>
-                        <Save className='leftIcon' />
-                        Save
-                    </Button>
-                </div>
-            </ApolloProvider>
-        )
-    }
+  updateCustomer = async (id) => {
+    const { name, description } = this.state
+    await this.props.updateCustomerMutation({
+      variables: {
+        id,
+        name,
+        description
+      }
+    })
+  }
+  
+  render() {
+    const org = this.props.location.state.organization
+    // TODO: If there's no state we should get the organization data from GraphQL
+    // This is the scenario where a user is trying to access the URL directly
+    return (
+      <ApolloProvider client={client}>
+        <div className='main'>
+          <TextField
+            id="name"
+            label="Company name"
+            className='textField'
+            defaultValue={org.name}
+            margin="normal"
+            autoFocus={true}
+            onChange={this.handleChange('name')}
+            />
+          <br />
+          <TextField
+            id="multiline-flexible"
+            label="Description"
+            defaultValue={org.description}
+            multiline
+            rowsMax="4"
+            className='textField'
+            margin="normal"
+            onChange={this.handleChange('description')}
+          />
+          <Button 
+            className='button' raised dense 
+            onClick={() => this.updateCustomer(org.id)}>
+            <Save className='leftIcon' />
+            Save
+          </Button>
+        </div>
+      </ApolloProvider>
+    )
+  }
 }
 
 export default graphql(UPDATE_ORGANIZATION, {
-    name: 'updateCustomerMutation'
+  name: 'updateCustomerMutation'
 })(CustomerEdit)
 ```
 
 It's almost the same process, but note something on this line:  
-`const org = this.props.location.state.organization`  
+
+```javascript
+const org = this.props.location.state.organization
+```
+
 We need to bind the customer data somehow to the `CustomerEdit` component.  
 There's some ways to acomplish that. We're passing this data throught the state (still need some investigation for the best approach).  
 We'll show you how in the next section (we're bindind the customer data in the list component context).  
@@ -417,22 +420,22 @@ Edit the `graphql.js` file and add the `UPDATE_ORGANIZATION` mutation.
 
 ```javascript
 export const UPDATE_ORGANIZATION = gql`
-    mutation (
-        $id: Int!,
-        $name: String,
-        $description: String) {
-        updateOrganizationById(input: {
-            id: $id
-            organizationPatch: {
-                name: $name,
-                description: $description
-            }
-        }) {
-            organization {
-                id
-            }
-        }
+  mutation (
+    $id: Int!,
+    $name: String,
+    $description: String) {
+    updateOrganizationById(input: {
+      id: $id
+      organizationPatch: {
+        name: $name,
+        description: $description
+      }
+    }) {
+      organization {
+        id
+      }
     }
+  }
 `
 ```
 
@@ -458,54 +461,54 @@ import { LIST_ORGANIZATION } from '../graphql'
 
 class CustomerList extends Component {
     
-    render() {
-        let orgs = this.props.data.allOrganizations
-        return (
-            <ApolloProvider client={client}>
-                <div className='main'>
-                    <Paper>
-                        <Table className='table'>
-                            <TableHead>
-                            <TableRow>
-                                <TableCell numeric>Id</TableCell>
-                                <TableCell>Name</TableCell>
-                                <TableCell>Description</TableCell>
-                                <TableCell>Actions</TableCell>
-                            </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {orgs!== undefined && orgs.edges ? orgs.edges.map(({ node }) => (
-                                    <TableRow key={node.id}>
-                                        <TableCell key={node.id}>{node.id}</TableCell>
-                                        <TableCell>{node.name}</TableCell>
-                                        <TableCell>{node.description}</TableCell>
-                                        <TableCell>
-                                            <div className='list-actions'>
-                                                <Link to={{
-                                                    pathname: `/customer/${node.id}`,
-                                                    state: { organization: node }
-                                                }} >
-                                                    <IconButton className='button' aria-label="Edit">
-                                                        <EditIcon />
-                                                    </IconButton>
-                                                </Link>
-                                            </div>
-                                        </TableCell>
-                                    </TableRow>
-                                )) : <TableRow><TableCell>Nope</TableCell></TableRow>}
-                            </TableBody>
-                        </Table>
-                    </Paper>
-                    <br />
-                    <Link to="/customer/new">
-                        <Button fab color="primary" aria-label="add" className='button'>
-                            <AddIcon />
-                        </Button>
-                    </Link>
-                </div>
-            </ApolloProvider>
-        )
-    }
+  render() {
+    let orgs = this.props.data.allOrganizations
+    return (
+      <ApolloProvider client={client}>
+        <div className='main'>
+          <Paper>
+            <Table className='table'>
+              <TableHead>
+                <TableRow>
+                  <TableCell numeric>Id</TableCell>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Description</TableCell>
+                  <TableCell>Actions</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {orgs!== undefined && orgs.edges ? orgs.edges.map(({ node }) => (
+                    <TableRow key={node.id}>
+                      <TableCell key={node.id}>{node.id}</TableCell>
+                      <TableCell>{node.name}</TableCell>
+                      <TableCell>{node.description}</TableCell>
+                      <TableCell>
+                        <div className='list-actions'>
+                          <Link to={{
+                            pathname: `/customer/${node.id}`,
+                            state: { organization: node }
+                          }} >
+                            <IconButton className='button' aria-label="Edit">
+                              <EditIcon />
+                            </IconButton>
+                          </Link>
+                        </div>
+                      </TableCell>
+                  </TableRow>
+                )) : <TableRow><TableCell>Nope</TableCell></TableRow>}
+              </TableBody>
+            </Table>
+          </Paper>
+          <br />
+          <Link to="/customer/new">
+            <Button fab color="primary" aria-label="add" className='button'>
+              <AddIcon />
+            </Button>
+          </Link>
+        </div>
+      </ApolloProvider>
+    )
+  }
 }
 
 export default graphql(LIST_ORGANIZATION)(CustomerList)
@@ -525,9 +528,9 @@ export const LIST_ORGANIZATION = gql`{
 	allOrganizations(condition: {active: true}) {
 	  edges {
 	    node {
-            id
-            name
-            description
+        id
+        name
+        description
 	    }
 	  }
 	}
