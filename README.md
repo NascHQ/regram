@@ -11,8 +11,8 @@ This is a working progress project, but we're already using some of the concepts
 - [Technologies](#technologies)
 - [Concepts](#concepts)
     - [Folder structure](#folder-structure)
-    - [Components (React + GraphQL)](#)
-    - [Components (React + Material)](#)
+    - [Components (React + GraphQL)](#components-react--graphql)
+    - [Components (React + Material)](#components-react--material)
 - [First steps](#first-steps)
 
 ## Technologies
