@@ -252,7 +252,7 @@ class CustomerNew extends Component {
                 <div className='main'>
                     <TextField
                         id="name"
-                        label="Nome da empresa"
+                        label="Company name"
                         className='textField'
                         margin="normal"
                         autoFocus={true}
@@ -260,7 +260,7 @@ class CustomerNew extends Component {
                         />
                     <TextField
                         id="multiline-flexible"
-                        label="Descrição"
+                        label="Description"
                         multiline
                         rowsMax="4"
                         className='textField'
@@ -293,6 +293,42 @@ Things to know:
 1. The last line exports the component calling the `graphql` method, which will handle all things for us  
 2. Apollo will bind the mutation to our component `props`  
 3. Then we can just call the mutation passing the necessary data
+
+Now we need to create the GraphQL mutation.  
+Create a file called `graphql.js` on the top level of customer dir.  
+
+```javascript
+import gql from 'graphql-tag'
+
+export const ADD_ORGANIZATION = gql`
+    mutation(
+        $name: String!, 
+        $description: String!,
+        $email: String,
+        $site: String,
+        $address: String) {
+        createOrganization(input: {
+            organization: { 
+                ownerId:1, 
+                name: $name, 
+                description: $description,
+                email: $email,
+                site: $site,
+                address: $address,
+                active: true
+            }
+        }) {
+            organization {
+                id
+            }
+        }
+    }
+`
+```
+Note that this mutation is based on the GraphQL API we have. You probably will have something different, but the cool thing is you can just copy the mutation and paste here.  
+That's pretty much all we need to do.  
+
+Here's our rendered component ready to add some customers!  
 
 ![Customer new](public/customer-new.png)
 
