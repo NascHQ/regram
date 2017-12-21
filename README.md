@@ -10,6 +10,9 @@ This is a working progress project, but we're already using some of the concepts
 
 - [Technologies](#technologies)
 - [Concepts](#concepts)
+    - [Folder structure](#folder-structure)
+    - [Components (React + GraphQL)](#)
+    - [Components (React + Material)](#)
 - [First steps](#first-steps)
 
 ## Technologies
@@ -92,4 +95,107 @@ export const client = new ApolloClient({
 Note that here is the place you must change your GraphQL endpoint.  
 We probably could evolve this to a top level configuration file soon.  
 
+### Components (React + GraphQL)
+There isn't much to talk about React components (if you're not familiar, go to the docs: [https://reactjs.org](https://reactjs.org/)).  
+The key here is the integration between React + GraphQL.  
+
+Each component which will communicate somehow with the GraphQL API should have a `graphql.js` file inside the top level dir.  
+This file defines all necessary component queries and mutations.  
+Let's use the same `customer` entity example.  
+Imagine we want to have a component listing all customers and another component providing the feature to add a customer.  
+Our folder structure should be something like this:  
+src/components/customer/
+├── list
+│   └── index.js
+├── new
+│   └── index.js
+└── graphql.js
+```
+
+Our `graphql.js` content will define our queries and mutations:  
+
+```javascript
+import gql from 'graphql-tag'
+
+export const ADD_ORGANIZATION = gql`
+    mutation createOrganization(
+        $name: String!, 
+        $description: String!,
+        $email: String,
+        $site: String,
+        $address: String) {
+        createOrganization(input: {
+            organization: { 
+                ownerId:1, 
+                name: $name, 
+                description: $description,
+                email: $email,
+                site: $site,
+                address: $address,
+                active: true
+            }
+        }) {
+            organization {
+                id
+            }
+        }
+    }
+`
+export const LIST_ORGANIZATION = gql`{
+	allOrganizations(condition: {active: true}) {
+	  edges {
+	    node {
+            id
+            name
+            description
+            email
+            site
+            address
+            active
+	    }
+	  }
+	}
+}`
+
+```
+The `graphql.js` should export constants (capitalized) with all operations you'll need for the entity components. 
+Then, you can just import the pieces you want inside the component.  
+
+### Components (React + Material)
+As mentioned before, we're basing our components on the Material design.  
+[MaterialUI](https://material-ui-next.com/) is helping us with the React integration.  
+With MaterialUI the integration is pretty straightforward (mostly of the times).  
+
+The strategy here is encapsulate your application components using the available Material components. It's basically a composition of your own components with the existent ones provided by the MaterialUI.  
+So, if you need a button in your component:  
+
+```javascript
+import Button from 'material-ui/Button'
+
+class MyComponent extends Component {
+    
+    render() {
+        return (
+            <Button 
+                className='button' raised dense 
+                onClick={}>
+                <Save className='leftIcon' />
+                Save
+            </Button>
+        )
+    }
+}
+
+export default MyComponent
+```
+You can check all Material components on the demos section of website: [https://material-ui-next.com/](https://material-ui-next.com/demos/)  
+
 ## First Steps
+The easiest to start is by cloning this repository, however, you can "merge" this boilerplate with your existent application, or start a new one using `create-react-app` or something similar.  
+
+```
+git clone git@github.com:NascHQ/react-graphql-apollo-material-boilerplate.git
+cd react-graphql-apollo-material-boilerplate
+yarn install
+yarn start
+```
