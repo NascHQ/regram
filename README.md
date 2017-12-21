@@ -1,4 +1,4 @@
-![React GraphQL Apollo Material](public/react-graphql-apollo-material.jpg)  
+![React GraphQL Apollo Material](react-graphql-apollo-material.jpg)  
 
 This project is a boilerplate for creating applications based on [React](https://reactjs.org/)/[GraphQL](http://graphql.org/)/[Apollo](https://www.apollographql.com/)/[Material](https://material.io/).  
 
@@ -9,6 +9,7 @@ This is a working progress project, but we're already using some of the concepts
 ## Table of Contents
 
 - [Technologies](#technologies)
+- [Concepts](#concepts)
 - [First steps](#first-steps)
 
 ## Technologies
@@ -31,5 +32,17 @@ We're using the great [MaterialUI](https://material-ui-next.com/), which are Rea
 
 That's it.  
 Of course we're using other technologies and projects as well, like [Create React App](https://github.com/facebookincubator/create-react-app), but the mentioned above are the main ones.  
+
+## Concepts
+The concepts behind this boilerplate are very attached to the technologies involved itself.  
+We encourage you do adopt the folder structure and conventions to achieve a satisfactory development experience.  
+
+### Folder structure
+We're extending Create React App structure.  
+
+```
+react-graphql-apollo-material-boilerplate
+
+```
 
 ## First Steps
