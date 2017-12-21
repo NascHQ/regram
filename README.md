@@ -104,6 +104,8 @@ This file defines all necessary component queries and mutations.
 Let's use the same `customer` entity example.  
 Imagine we want to have a component listing all customers and another component providing the feature to add a customer.  
 Our folder structure should be something like this:  
+
+```
 src/components/customer/
 ├── list
 │   └── index.js
