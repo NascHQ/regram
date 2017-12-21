@@ -1,4 +1,4 @@
-![React GraphQL Apollo Material](react-graphql-apollo-material.jpg)  
+![React GraphQL Apollo Material](src/components/app/react-graphql-apollo-material.jpg)  
 
 This project is a boilerplate for creating applications based on [React](https://reactjs.org/)/[GraphQL](http://graphql.org/)/[Apollo](https://www.apollographql.com/)/[Material](https://material.io/).  
 
