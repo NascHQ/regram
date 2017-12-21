@@ -42,7 +42,54 @@ We're extending Create React App structure.
 
 ```
 react-graphql-apollo-material-boilerplate
-
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
+├── README.md
+├── src
+│   ├── components
+│   │   └── app
+│   │       ├── index.css
+│   │       └── index.js
+│   ├── index.css
+│   ├── index.js
+│   ├── lib
+│   │   ├── apollo.js
+│   │   └── util.js
+│   ├── logo.svg
+│   └── registerServiceWorker.js
+└── yarn.lock
 ```
+
+All components should be placed inside the `src/components` directory.  
+We're using the sub-components strategy, where we nest all related components.  
+For example, if we have a `customer` entity in our application and we'll have different components related to this entity, everything should stay inside a top level `customer` dir.  
+```
+src/components/customer/
+├── edit
+│   └── index.js
+├── list
+│   └── index.js
+├── new
+│   └── index.js
+├── index.css
+├── index.js
+└── graphql.js
+```
+
+You can put all JavaScript helper code inside the `src/lib` dir.  
+All Apollo related stuff should be in the `apollo.js` file.  
+For now, we're just creating the Apollo client:  
+
+```javascript
+export const client = new ApolloClient({
+  link: new HttpLink({ uri: 'http://localhost:5000/graphql' }),
+  cache: new InMemoryCache()
+})
+```
+Note that here is the place you must change your GraphQL endpoint.  
+We probably could evolve this to a top level configuration file soon.  
 
 ## First Steps
