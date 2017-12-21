@@ -14,6 +14,10 @@ This is a working progress project, but we're already using some of the concepts
     - [Components (React + GraphQL)](#components-react--graphql)
     - [Components (React + Material)](#components-react--material)
 - [First steps](#first-steps)
+- [Creating components](#creating-components)
+    - [Create customer component](#create-customer-component)
+    - [Edit customer component](#edit-customer-component)
+    - [List customer component](#list-customer-component)
 
 ## Technologies
 
@@ -201,3 +205,97 @@ cd react-graphql-apollo-material-boilerplate
 yarn install
 yarn start
 ```
+
+That's it. You're good to go!  
+
+## Creating components
+Let's see in practice how to create components using this boilerplate and all of the technologies involved.  
+We'll implement customer components, allowing the *create*, *list* and *edit* operations.  
+
+### Create customer component
+First, create a directory called `customer` inside the `components` folder.  
+Following the sub-components convention, add a new directory called `new`, to represent our component, which will provide the functionality to add new customers in our application.  
+
+Now we'll mix all together, React + Apollo + GraphQL + Material.  
+Let's implement the logic for our `CustomerNew` component, creating the entry point `index.js`.  
+
+```javascript
+import React, { Component } from 'react'
+import TextField from 'material-ui/TextField'
+import Save from 'material-ui-icons/Save'
+import Button from 'material-ui/Button'
+import { client } from '../../../lib/apollo'
+import { ApolloProvider, graphql } from 'react-apollo'
+import { ADD_ORGANIZATION } from '../graphql'
+
+class CustomerNew extends Component {
+
+    handleChange = name => event => {
+        this.setState({
+            [name]: event.target.value
+        })
+    }
+
+    createCustomer () {
+        const { name, description } = this.state
+        await this.props.createCustomerMutation({
+          variables: {
+            name,
+            description
+          }
+        })
+    }
+    
+    render() {
+        return (
+            <ApolloProvider client={client}>
+                <div className='main'>
+                    <TextField
+                        id="name"
+                        label="Nome da empresa"
+                        className='textField'
+                        margin="normal"
+                        autoFocus={true}
+                        onChange={this.handleChange('name')}
+                        />
+                    <TextField
+                        id="multiline-flexible"
+                        label="Descrição"
+                        multiline
+                        rowsMax="4"
+                        className='textField'
+                        margin="normal"
+                        onChange={this.handleChange('description')}
+                        />
+                    <Button 
+                        className='button' raised dense 
+                        onClick={() => this.createCustomer()}>
+                        <Save className='leftIcon' />
+                        Salvar
+                    </Button>
+                </div>  
+            </ApolloProvider>
+        )
+    }
+}
+
+export default graphql(ADD_ORGANIZATION)(CustomerNew)
+```
+
+What we are doing here?  
+
+1. Importing all Material stuff we'll need  
+2. Importing the Apollo client, provider and the `graphql` method  
+3. Importing the `ADD_ORGANIZATION` GraphQL mutation
+
+Things to know:  
+
+1. The last line exports the component calling the `graphql` method, which will handle all things for us  
+2. Apollo will bind the mutation to our component `props`  
+3. Then we can just call the mutation passing the necessary data
+
+![Customer new](public/customer-new.png)
+
+### Edit customer component
+
+### List customer component
