@@ -147,9 +147,9 @@ export const LIST_ORGANIZATION = gql`{
         id
         name
         description
-	    }
-	  }
-	}
+      }
+    }
+  }
 }`
 
 ```
@@ -195,6 +195,8 @@ yarn start
 ```
 
 That's it. You're good to go!  
+
+![App screenshot](public/app-screenshot.png)
 
 ## Creating components
 Let's see in practice how to create components using this boilerplate and all of the technologies involved.  
