@@ -18,6 +18,7 @@ This is a working progress project, but we're already using some of the concepts
     - [Create customer component](#create-customer-component)
     - [Edit customer component](#edit-customer-component)
     - [List customer component](#list-customer-component)
+- [End notes](#end-notes)
 
 ## Technologies
 
@@ -535,3 +536,7 @@ In your application you should have different needs, but with this boilerplate y
 Here's our rendered component listing our customers!  
 
 ![Customer list](public/customer-list.png)
+
+## End notes
+This is still a working progress work, feel free to ask questions, suggest changes and improvements.  
+We're still learning about and exploring all the benefits and caveats of all these technologies.  
