@@ -525,17 +525,21 @@ Edit the `graphql.js` file and add the `LIST_ORGANIZATION` query.
 
 ```javascript
 export const LIST_ORGANIZATION = gql`{
-	allOrganizations(condition: {active: true}) {
-	  edges {
-	    node {
+  allOrganizations(condition: {active: true}) {
+    edges {
+      node {
         id
         name
         description
-	    }
-	  }
-	}
+      }
+    }
+  }
 }`
 ```
+
+One of the cool things about GraphQL is the power is in the of the consumer.  
+So as you can see, the `LIST_ORGANIZATION` query is returning the fields I wanted.  
+In your application you should have different needs, but with this boilerplate you can just change the query and the component structure to have things working.  
 
 Here's our rendered component listing our customers!  
 
