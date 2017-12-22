@@ -126,19 +126,12 @@ import gql from 'graphql-tag'
 export const ADD_ORGANIZATION = gql`
     mutation createOrganization(
       $name: String!, 
-      $description: String!,
-      $email: String,
-      $site: String,
-      $address: String) {
+      $description: String!) {
       createOrganization(input: {
         organization: { 
           ownerId:1, 
           name: $name, 
-          description: $description,
-          email: $email,
-          site: $site,
-          address: $address,
-          active: true
+          description: $description
         }
       }) {
           organization {
@@ -148,16 +141,12 @@ export const ADD_ORGANIZATION = gql`
     }
 `
 export const LIST_ORGANIZATION = gql`{
-	allOrganizations(condition: {active: true}) {
-	  edges {
-	    node {
+  allOrganizations(condition: {active: true}) {
+    edges {
+      node {
         id
         name
         description
-        email
-        site
-        address
-        active
 	    }
 	  }
 	}
