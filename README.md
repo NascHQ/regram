@@ -1,4 +1,4 @@
-# React + GraphQL + Apollo + Material (Boilerplate)
+# ReGrAM - React + GraphQL + Apollo + Material (Boilerplate)
 
 ![React GraphQL Apollo Material](src/components/app/react-graphql-apollo-material.jpg)  
 

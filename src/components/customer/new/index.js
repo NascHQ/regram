@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
 import TextField from 'material-ui/TextField'
 import Save from 'material-ui-icons/Save'
 import Button from 'material-ui/Button'
@@ -23,7 +24,7 @@ class CustomerNew extends Component {
       })
   }
 
-  createCustomer () {
+  async createCustomer () {
     const { name, description } = this.state
     await this.props.createCustomerMutation({
       variables: {
@@ -68,4 +69,4 @@ class CustomerNew extends Component {
 
 export default graphql(ADD_ORGANIZATION, {
   name: 'createCustomerMutation'
-})(CustomerEdit)
+})(CustomerNew)
