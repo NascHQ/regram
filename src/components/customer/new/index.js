@@ -40,7 +40,7 @@ class CustomerNew extends Component {
         <div className='main'>
           <TextField
               id="name"
-              label="Nome da empresa"
+              label="Company name"
               className='textField'
               margin="normal"
               autoFocus={true}
@@ -49,7 +49,7 @@ class CustomerNew extends Component {
           <br />
           <TextField
               id="multiline-flexible"
-              label="Descrição"
+              label="Description"
               multiline
               rowsMax="4"
               className='textField'
@@ -59,7 +59,7 @@ class CustomerNew extends Component {
             className='button' raised dense 
             onClick={() => this.createCustomer()}>
             <Save className='leftIcon' />
-            Salvar
+            Save
           </Button>
         </div>  
       </ApolloProvider>

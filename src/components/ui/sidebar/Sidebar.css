@@ -1,0 +1,11 @@
+.Sidebar {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background: red;
+}
+
+ul {
+    margin-left: -35px;
+}

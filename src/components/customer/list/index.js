@@ -4,6 +4,9 @@ import '../index.css'
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
 import Paper from 'material-ui/Paper'
 import { LIST_ORGANIZATION } from '../graphql'
+import { Link } from 'react-router-dom'
+import Button from 'material-ui/Button'
+import AddIcon from 'material-ui-icons/Add'
 
 class CustomerList extends Component {
   render () {
@@ -16,7 +19,7 @@ class CustomerList extends Component {
               <TableRow>
                 <TableCell numeric>Id</TableCell>
                 <TableCell>Nome</TableCell>
-                <TableCell>Descrição</TableCell>
+                <TableCell>Description</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -31,6 +34,11 @@ class CustomerList extends Component {
           </Table>
         </Paper>
         <br />
+        <Link to="/customer/new">
+            <Button fab color="primary" aria-label="add" className='button'>
+                <AddIcon />
+            </Button>
+        </Link>
       </div>
     )
   }
