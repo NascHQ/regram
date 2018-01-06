@@ -20,6 +20,8 @@ This is a working progress project, but we're already using some of the concepts
     - [Create customer component](#create-customer-component)
     - [Edit customer component](#edit-customer-component)
     - [List customer component](#list-customer-component)
+- [Routing](#routing)
+- [Loading](#loading-components)
 - [End notes](#end-notes)
 
 ## Technologies
@@ -87,6 +89,13 @@ src/components/customer/
 ├── index.css
 ├── index.js
 └── graphql.js
+```
+
+For UI components, such as "header", "sidebar", "menu", etc., we recommend a `ui` directory for a better organization.  
+```
+src/components/ui/header
+├── index.css
+└── index.js
 ```
 
 You can put all JavaScript helper code inside the `src/lib` dir.  
@@ -539,6 +548,14 @@ Here's our rendered component listing our customers!
 
 ![Customer list](public/customer-list.png)
 
+## Routing
+We're using [React Router](https://github.com/ReactTraining/react-router) to control all applications routes.  
+Routes are defined in the `./lib/routes.js` file.  
+
+## Loading Components  
+By default you can just set a component to a route, but we're using [React Loadable](https://github.com/thejameskyle/react-loadable), a higher order component for loading components with dynamic imports.  
+With React Loadable we can create a dynamic loadable components, which enable our application's bundle to stay small.  
+
 ## End notes
-This is still a working progress work, feel free to ask questions, suggest changes and improvements.  
-We're still learning about and exploring all the benefits and caveats of all these technologies.  
+This is still a working progress, feel free to ask questions, suggest changes and improvements.  
+We're still learning and exploring all the benefits and caveats of all these technologies.  
