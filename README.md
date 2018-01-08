@@ -2,7 +2,7 @@
 
 ![React GraphQL Apollo Material](src/components/main/react-graphql-apollo-material.jpg)  
 
-This project is a boilerplate for creating applications based on [React](https://reactjs.org/)/[GraphQL](http://graphql.org/)/[Apollo](https://www.apollographql.com/)/[Material](https://material.io/).  
+This project is a boilerplate for creating [React](https://reactjs.org/)/[GraphQL](http://graphql.org/)/[Apollo](https://www.apollographql.com/)/[Material](https://material.io/) applications.  
 
 We're using some core concepts of all of those technologies and creating some new concepts as well, aiming to have a fast, painless and pleasant development experience, even with complex software requirements.  
 
@@ -28,18 +28,19 @@ This is a working progress project, but we're already using some of the concepts
 
 **GraphQL** is *de facto* the new standard for creating great APIs.  
 It's easy to consume, easy to implement, easy to integrate and a lot more of nicer things.  
-We recently stumble on the awesome [PostGraphQL](https://github.com/postgraphql/postgraphql) project, which generates a GraphQL API by reflection over a PostgreSQL schema.  
-We always loved PostgreSQL and we were implementing GraphQL for a new application, so **PostGraphQL** fitted like a glove for us 😀  
-With PostGraphQL we can focus on the database schema modeling, entities, relationships, etc., and then PostGraphQL do its magic and we have a great GraphQL API for our applications.  
+We've recently stumble up the awesome [PostGraphQL](https://github.com/postgraphql/postgraphql) project, which generates a GraphQL API by reflection over a PostgreSQL schema.  
+We've always loved PostgreSQL and we were implementing GraphQL for a new application, so **PostGraphQL** fitted like a glove for us 😀  
+With PostGraphQL we can focus on the database schema modeling, entities, relationships, etc., and then PostGraphQL do its magic. Boom! Now we have a great GraphQL API for our applications.  
 
-There's a lot of front-end libraries out there, and we are still experimenting all of those, even that just for fun, but **React** seems to be (at least now) a good choice for the kind of projects we're building at Nasc.  
+There's a lot of front-end libraries out there and we are still experimenting all of those, even that just for fun.
+Nevertheless, **React** seems to be (at least now) a good choice for the kind of projects we're building at Nasc.  
 GraphQL and React were built by Facebook, but it's not that easy to integrate them, that's where **Apollo** appears.  
 Apollo provides a universal GraphQL API on top of your existing services.  
 Basically, Apollo binds data to the UI (React in our case), but it does a little more usefull things, like caching responses.  
-I'll tell you the API is not that beautiful, but with workaround here and there, you're good to go.  
+I'll tell you the API is not that beautiful, but with a workaround here and there, you're good to go.  
 
-Talking about interface, we need a cool and fancy style guide for our components.  
-[Google Material(https://material.io/) give us that and more.  
+Speaking of interface, we need a cool and fancy style guide for our components.  
+[Google Material](https://material.io/) gives us that and more.  
 We're using the great [MaterialUI](https://material-ui-next.com/), which are React components that implement Google's Material Design.  
 
 That's it.  
@@ -141,7 +142,6 @@ export const ADD_ORGANIZATION = gql`
       $description: String!) {
       createOrganization(input: {
         organization: { 
-          ownerId:1, 
           name: $name, 
           description: $description
         }
@@ -194,10 +194,10 @@ class MyComponent extends Component {
 
 export default MyComponent
 ```
-You can check all Material components on the demos section of website: [https://material-ui-next.com/](https://material-ui-next.com/demos/)  
+You can check all Material components on the demos section of the website: [https://material-ui-next.com/](https://material-ui-next.com/demos/)  
 
 ## First Steps
-The easiest to start is by cloning this repository, however, you can "merge" this boilerplate with your existent application, or start a new one using `create-react-app` or something similar.  
+The easiest way to start is by cloning this repository, however, you can "merge" this boilerplate with your existent application, or start a new one using `create-react-app` or something similar.  
 
 ```
 git clone git@github.com:NascHQ/react-graphql-apollo-material-boilerplate.git
@@ -332,7 +332,7 @@ Here's our rendered component ready to add some customers!
 OK, now our application can create customers, but we need to have the ability to edit as well.  
 Let's do it.  
 
-Following the convention, add a new directory called `edit`, to represent our component, which will provide the functionality to edit a give customer in our application.  
+Following the convention, add a new directory called `edit`, to represent our component, which will provide the functionality to edit a given customer in our application.  
 Let's implement the logic for our `CustomerEdit` component, creating the entry point `index.js`.  
 
 ```javascript
@@ -540,7 +540,7 @@ export const LIST_ORGANIZATION = gql`{
 }`
 ```
 
-One of the cool things about GraphQL is the power is in the of the consumer.  
+One of the cool things about GraphQL is the power is in the hand of the consumer.  
 So as you can see, the `LIST_ORGANIZATION` query is returning the fields I wanted.  
 In your application you should have different needs, but with this boilerplate you can just change the query and the component structure to have things working.  
 
