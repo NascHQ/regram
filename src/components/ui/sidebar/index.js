@@ -12,10 +12,22 @@ import { Link } from 'react-router-dom'
 
 const styles = {
   list: {
-    width: 250
+    width: 250,
+    height: '100%',
+    position: 'relative'
   },
   listFull: {
     width: 'auto'
+  },
+  listItem: {
+    textAlign: 'left',
+    padding: 0
+  },
+  footer: {
+    position: 'absolute',
+    bottom: '1rem',
+    width: '100%',
+    textAlign: 'center',
   },
 }
 
@@ -27,32 +39,30 @@ class Sidebar extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          <ListItem button>
+          <ListItem button component={Link} to='/customer'>
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
-            <Link to="/customer">
-              <ListItemText primary="Customer" />
-            </Link>
+            <ListItemText primary="Customer" className={classes.listItem} />
           </ListItem>
-          <ListItem button>
+          <ListItem button component={Link} to='/'>
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
-            <Link to="/">
-              <ListItemText primary="Example 1" />
-            </Link>
+            <ListItemText primary="Example 1" className={classes.listItem} />
           </ListItem>
-          <ListItem button>
+          <ListItem button component={Link} to='/'>
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
-            <Link to="/">
-              <ListItemText primary="Example 2" />
-            </Link>
+            <ListItemText primary="Example 2" className={classes.listItem} />
           </ListItem>
         </List>
         <Divider />
+        <div className={classes.footer}>
+          <p><strong>Nasc.io</strong></p>
+          <p>Born to be different</p>  
+        </div>
       </div>
     )
     

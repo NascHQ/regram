@@ -17,8 +17,8 @@ class CustomerList extends Component {
           <Table className='table'>
             <TableHead>
               <TableRow>
-                <TableCell numeric>Id</TableCell>
-                <TableCell>Nome</TableCell>
+                <TableCell numeric># ID</TableCell>
+                <TableCell>Name</TableCell>
                 <TableCell>Description</TableCell>
               </TableRow>
             </TableHead>
@@ -29,7 +29,7 @@ class CustomerList extends Component {
                   <TableCell>{node.name}</TableCell>
                   <TableCell>{node.description}</TableCell>
                 </TableRow>
-              )) : <TableRow><TableCell>Nope</TableCell></TableRow>}
+              )) : <TableRow><TableCell>Nothing to see here!</TableCell></TableRow>}
             </TableBody>
           </Table>
         </Paper>
