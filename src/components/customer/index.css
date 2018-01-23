@@ -9,8 +9,8 @@
 
 .button {
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: 1.5rem;
+    right: 1.5rem;
 }
 
 .list-actions {
