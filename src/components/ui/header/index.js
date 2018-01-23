@@ -1,43 +1,41 @@
-import React, { Component } from 'react'
-import { withStyles } from 'material-ui/styles'
-import AppBar from 'material-ui/AppBar'
-import Toolbar from 'material-ui/Toolbar'
-import Typography from 'material-ui/Typography'
-import UserAvatar from './user-avatar'
+import React, { Component } from 'react';
+import { withStyles } from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import UserAvatar from './user-avatar';
 
 const styles = theme => ({
-    root: {
-        marginLeft: '250px'
-    },
-    flex: {
-        flex: 1,
-    },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
-    },
-    avatar: {
-      cursor:'pointer'
-    }
-})
+  root: {
+    marginLeft: '250px'
+  },
+  flex: {
+    flex: 1
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
+  },
+  avatar: {
+    cursor: 'pointer'
+  }
+});
 
 class Header extends Component {
-
   handleChange = (event, checked) => {
-    this.setState({ auth: checked })
-  }
+    this.setState({ auth: checked });
+  };
 
   handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget })
-  }
+    this.setState({ anchorEl: event.currentTarget });
+  };
 
   handleRequestClose = () => {
-    this.setState({ anchorEl: null })
-  }
+    this.setState({ anchorEl: null });
+  };
 
   render() {
-
-    const { classes } = this.props
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
@@ -50,9 +48,8 @@ class Header extends Component {
           </Toolbar>
         </AppBar>
       </div>
-    )
+    );
   }
 }
 
-export default withStyles(styles)(Header)
-
+export default withStyles(styles)(Header);

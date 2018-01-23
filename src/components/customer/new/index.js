@@ -1,72 +1,75 @@
-import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
-import TextField from 'material-ui/TextField'
-import Save from 'material-ui-icons/Save'
-import Button from 'material-ui/Button'
-import './index.css'
-import { client } from '../../../lib/apollo'
-import { ApolloProvider } from 'react-apollo'
-import { ADD_ORGANIZATION } from '../graphql'
+import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import TextField from 'material-ui/TextField';
+import Save from 'material-ui-icons/Save';
+import Button from 'material-ui/Button';
+import './index.css';
+import { client } from '../../../lib/apollo';
+import { ApolloProvider } from 'react-apollo';
+import { ADD_ORGANIZATION } from '../graphql';
 
 class CustomerNew extends Component {
-
   componentDidCatch(error, info) {
-      console.log(info.componentStack)
+    console.log(info.componentStack);
   }
 
   handleSave() {
-      console.log(this.state)
+    console.log(this.state);
   }
 
   handleChange = name => event => {
-      this.setState({
-          [name]: event.target.value
-      })
-  }
+    this.setState({
+      [name]: event.target.value
+    });
+  };
 
-  async createCustomer () {
-    const { name, description } = this.state
+  async createCustomer() {
+    const { name, description } = this.state;
     await this.props.createCustomerMutation({
       variables: {
         name,
         description
       }
-    })
+    });
   }
-  
+
   render() {
     return (
       <ApolloProvider client={client}>
-        <div className='main'>
+        <div className="main">
           <TextField
-              id="name"
-              label="Company name"
-              className='textField'
-              margin="normal"
-              autoFocus={true}
-              onChange={this.handleChange('name')}
-              />
+            id="name"
+            label="Company name"
+            className="textField"
+            margin="normal"
+            autoFocus={true}
+            onChange={this.handleChange('name')}
+          />
           <br />
           <TextField
-              id="multiline-flexible"
-              label="Description"
-              multiline
-              rowsMax="4"
-              className='textField'
-              margin="normal"
-              onChange={this.handleChange('description')} />
-          <Button 
-            className='button' raised dense 
-            onClick={() => this.createCustomer()}>
-            <Save className='leftIcon' />
+            id="multiline-flexible"
+            label="Description"
+            multiline
+            rowsMax="4"
+            className="textField"
+            margin="normal"
+            onChange={this.handleChange('description')}
+          />
+          <Button
+            className="button"
+            raised
+            dense
+            onClick={() => this.createCustomer()}
+          >
+            <Save className="leftIcon" />
             Save
           </Button>
-        </div>  
+        </div>
       </ApolloProvider>
-    )
+    );
   }
 }
 
 export default graphql(ADD_ORGANIZATION, {
   name: 'createCustomerMutation'
-})(CustomerNew)
+})(CustomerNew);
